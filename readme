@@ -1,0 +1,19 @@
+Use your iOS simulator flow:
+
+# build
+dotnet build Codelingo.Frontend.csproj -f net10.0-ios
+# boot simulator (only if not already running)
+xcrun simctl boot 08CC77B8-6B2D-48A9-B9C8-E54C5E713DFB
+xcrun simctl bootstatus 08CC77B8-6B2D-48A9-B9C8-E54C5E713DFB -b
+# reinstall app
+xcrun simctl uninstall 08CC77B8-6B2D-48A9-B9C8-E54C5E713DFB com.rudra.codelingo.frontend.new
+xcrun simctl install 08CC77B8-6B2D-48A9-B9C8-E54C5E713DFB ./bin/Debug/net10.0-ios/iossimulator-arm64/Codelingo.Frontend.app
+# launch
+xcrun simctl launch 08CC77B8-6B2D-48A9-B9C8-E54C5E713DFB com.rudra.codelingo.frontend.new
+
+⸻
+
+If UI doesn’t update:
+
+dotnet clean
+dotnet build Codelingo.Frontend.csproj -f net10.0-ios
