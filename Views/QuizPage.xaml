@@ -1,3 +1,4 @@
+<!-- Views/QuizPage.xaml -->
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Codelingo.Frontend.Views.QuizPage"
@@ -5,32 +6,58 @@
              BackgroundColor="{StaticResource AppBg}">
 
     <VerticalStackLayout Padding="24" Spacing="18">
-        <ProgressBar x:Name="ProgressBar" Progress="0" ProgressColor="{StaticResource AccentBlue}" />
 
-        <Border BackgroundColor="{StaticResource CardBg}" StrokeShape="RoundRectangle 24" Padding="20">
+        <ProgressBar x:Name="ProgressBar"
+                     Progress="0"
+                     Style="{StaticResource QuizProgress}" />
+
+        <Border BackgroundColor="{StaticResource CardBg}"
+                Stroke="{StaticResource SurfaceStroke}"
+                StrokeShape="RoundRectangle 24"
+                Padding="20">
+
             <VerticalStackLayout Spacing="16">
-                <Label x:Name="ProgressLabel"
-                       Text="Question 1"
-                       TextColor="{StaticResource SoftText}"
-                       FontAttributes="Bold"
-                       HorizontalOptions="Center" />
 
-                <Label x:Name="TimerLabel"
-                       Text="15"
-                       FontSize="34"
-                       FontAttributes="Bold"
-                       TextColor="{StaticResource AccentBlue}"
-                       HorizontalOptions="Center" />
+                <Grid ColumnDefinitions="*,Auto">
+                    <Label x:Name="ProgressLabel"
+                           Text="Question 1"
+                           TextColor="{StaticResource SoftText}"
+                           FontAttributes="Bold"
+                           VerticalOptions="Center" />
+
+                    <Border Grid.Column="1"
+                            BackgroundColor="{StaticResource CardBgElevated}"
+                            Stroke="{StaticResource AccentBlue}"
+                            StrokeShape="RoundRectangle 18"
+                            Padding="14,6">
+                        <Label x:Name="TimerLabel"
+                               Text="15"
+                               FontSize="24"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource AccentBlue}" />
+                    </Border>
+                </Grid>
+
+                <Label Text="QUESTION"
+                       Style="{StaticResource SectionHeader}" />
 
                 <Label x:Name="QuestionLabel"
                        FontSize="22"
                        FontAttributes="Bold"
-                       TextColor="White" />
+                       TextColor="{StaticResource TextPrimary}"
+                       LineBreakMode="WordWrap" />
 
-                <VerticalStackLayout x:Name="OptionsLayout" Spacing="10" />
+                <VerticalStackLayout x:Name="OptionsLayout"
+                                     Spacing="10" />
 
-                <Label x:Name="MessageLabel" TextColor="#FCA5A5" />
+                <Label x:Name="MessageLabel"
+                       FontSize="14"
+                       FontAttributes="Bold"
+                       TextColor="#FCA5A5"
+                       HorizontalTextAlignment="Center" />
+
             </VerticalStackLayout>
         </Border>
+
     </VerticalStackLayout>
 </ContentPage>

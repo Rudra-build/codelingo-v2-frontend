@@ -1,28 +1,91 @@
+<!-- Views/LeaderboardPage.xaml -->
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:Codelingo.Frontend.Views"
              x:Class="Codelingo.Frontend.Views.LeaderboardPage"
              Title="Leaderboard"
-             BackgroundColor="{StaticResource AppBg}">
+             BackgroundColor="{x:Static views:LeaderboardPageStyles.Background}">
 
-    <VerticalStackLayout Padding="24" Spacing="16">
-        <Label Text="Leaderboard" Style="{StaticResource ScreenTitle}" />
-        <Label Text="Top learners ranked by level and quiz activity" Style="{StaticResource SubText}" />
+    <VerticalStackLayout Padding="20,24,20,32" Spacing="16">
+
+        <Label Text="🏆 Leaderboard"
+               Style="{StaticResource ScreenTitle}" />
+
+        <Label Text="Top learners ranked by level and quiz activity"
+               Style="{StaticResource SubText}" />
 
         <CollectionView x:Name="LeaderboardCollection">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Border BackgroundColor="{StaticResource CardBg}" StrokeShape="RoundRectangle 18" Padding="16" Margin="0,6">
-                        <VerticalStackLayout Spacing="5">
-                            <Label Text="{Binding Name}" FontSize="20" FontAttributes="Bold" TextColor="White" />
-                            <Label Text="{Binding Level, StringFormat='Level: {0}'}" TextColor="{StaticResource AccentBlue}" />
-                            <Label Text="{Binding CurrentStreak, StringFormat='Streak: {0}'}" TextColor="{StaticResource SoftText}" />
-                            <Label Text="{Binding TotalQuizzesCompleted, StringFormat='Quizzes Completed: {0}'}" TextColor="{StaticResource SoftText}" />
-                        </VerticalStackLayout>
+                    <Border BackgroundColor="{x:Static views:LeaderboardPageStyles.Card}"
+                            Stroke="{StaticResource SurfaceStroke}"
+                            StrokeShape="RoundRectangle 20"
+                            Padding="16"
+                            Margin="0,6">
+
+                        <Grid ColumnDefinitions="48,*,Auto" ColumnSpacing="12">
+
+                            <Border WidthRequest="44"
+                                    HeightRequest="44"
+                                    BackgroundColor="{Binding RankColor}"
+                                    StrokeShape="RoundRectangle 22">
+                                <Label Text="{Binding RankDisplay}"
+                                       TextColor="White"
+                                       FontAttributes="Bold"
+                                       FontSize="15"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                            </Border>
+
+                            <VerticalStackLayout Grid.Column="1" Spacing="5">
+                                <Label Text="{Binding Name}"
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       TextColor="{x:Static views:LeaderboardPageStyles.TextPrimary}" />
+
+                                <HorizontalStackLayout Spacing="8">
+                                    <Border BackgroundColor="{StaticResource PrimaryPurple}"
+                                            StrokeShape="RoundRectangle 10"
+                                            Padding="8,3">
+                                        <Label Text="{Binding Level, StringFormat='⚡ Lvl {0}'}"
+                                               FontSize="11"
+                                               FontAttributes="Bold"
+                                               TextColor="White" />
+                                    </Border>
+
+                                    <Border BackgroundColor="{StaticResource AccentOrange}"
+                                            StrokeShape="RoundRectangle 10"
+                                            Padding="8,3">
+                                        <Label Text="{Binding CurrentStreak, StringFormat='🔥 {0}'}"
+                                               FontSize="11"
+                                               FontAttributes="Bold"
+                                               TextColor="White" />
+                                    </Border>
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="2" HorizontalOptions="End">
+                                <Label Text="{Binding TotalQuizzesCompleted}"
+                                       FontSize="22"
+                                       FontAttributes="Bold"
+                                       TextColor="{x:Static views:LeaderboardPageStyles.AccentBlue}"
+                                       HorizontalTextAlignment="End" />
+
+                                <Label Text="quizzes"
+                                       FontSize="11"
+                                       TextColor="{x:Static views:LeaderboardPageStyles.SoftText}"
+                                       HorizontalTextAlignment="End" />
+                            </VerticalStackLayout>
+
+                        </Grid>
                     </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <Label x:Name="MessageLabel" TextColor="#FCA5A5" />
+        <Label x:Name="MessageLabel"
+               TextColor="#FCA5A5"
+               HorizontalTextAlignment="Center" />
+
     </VerticalStackLayout>
 </ContentPage>

@@ -1,90 +1,293 @@
+<!-- Views/HomePage.xaml -->
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Codelingo.Frontend.Views.HomePage"
              Title="Home"
              BackgroundColor="{StaticResource AppBg}">
 
-    <ScrollView>
-        <VerticalStackLayout Padding="24" Spacing="18">
+    <Grid RowDefinitions="*,Auto">
 
-            <Border BackgroundColor="{StaticResource CardBg}"
-                    StrokeShape="RoundRectangle 24"
-                    Padding="22">
-                <VerticalStackLayout Spacing="8">
-                    <Label Text="CodeLingo"
-                           FontSize="36"
-                           FontAttributes="Bold"
-                           TextColor="White" />
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Padding="20,24,20,20" Spacing="18">
 
-                    <Label x:Name="WelcomeLabel"
-                           FontSize="18"
-                           FontAttributes="Bold"
-                           TextColor="{StaticResource SoftText}" />
+                <!-- HERO -->
+                <Border BackgroundColor="{StaticResource CardBg}"
+                        Stroke="{StaticResource SurfaceStroke}"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 28"
+                        Padding="22">
 
-                    <Label x:Name="StatsLabel"
-                           FontSize="14"
-                           TextColor="{StaticResource AccentBlue}" />
+                    <VerticalStackLayout Spacing="16">
+
+                        <Grid ColumnDefinitions="*,Auto">
+                            <VerticalStackLayout Spacing="4">
+                                <Label Text="CodeLingo"
+                                       FontSize="26"
+                                       FontAttributes="Bold"
+                                       TextColor="{StaticResource TextPrimary}" />
+
+                                <Label x:Name="WelcomeLabel"
+                                       FontSize="15"
+                                       TextColor="{StaticResource SoftText}" />
+                            </VerticalStackLayout>
+
+                            <Button Grid.Column="1"
+                                    Text="👤"
+                                    Clicked="OnProfileClicked"
+                                    WidthRequest="52"
+                                    HeightRequest="52"
+                                    CornerRadius="26"
+                                    BackgroundColor="{StaticResource AccentBlue}"
+                                    FontSize="22" />
+                        </Grid>
+
+                        <!-- STATUS PILLS -->
+                        <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+
+                            <Border BackgroundColor="{StaticResource CardBgElevated}"
+                                    Stroke="{StaticResource AccentOrange}"
+                                    StrokeShape="RoundRectangle 18"
+                                    Padding="10">
+                                <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
+                                    <Label Text="🔥" FontSize="22" HorizontalOptions="Center" />
+                                    <Label x:Name="StreakLabel"
+                                           FontSize="18"
+                                           FontAttributes="Bold"
+                                           TextColor="{StaticResource AccentOrange}"
+                                           HorizontalOptions="Center" />
+                                    <Label Text="STREAK"
+                                           FontSize="10"
+                                           FontAttributes="Bold"
+                                           TextColor="{StaticResource SoftText}"
+                                           HorizontalOptions="Center" />
+                                </VerticalStackLayout>
+                            </Border>
+
+                            <Border Grid.Column="1"
+                                    BackgroundColor="{StaticResource CardBgElevated}"
+                                    Stroke="{StaticResource AccentBlue}"
+                                    StrokeShape="RoundRectangle 18"
+                                    Padding="10">
+                                <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
+                                    <Label Text="⚡" FontSize="22" HorizontalOptions="Center" />
+                                    <Label x:Name="LevelLabel"
+                                           FontSize="18"
+                                           FontAttributes="Bold"
+                                           TextColor="{StaticResource AccentBlue}"
+                                           HorizontalOptions="Center" />
+                                    <Label Text="LEVEL"
+                                           FontSize="10"
+                                           FontAttributes="Bold"
+                                           TextColor="{StaticResource SoftText}"
+                                           HorizontalOptions="Center" />
+                                </VerticalStackLayout>
+                            </Border>
+
+                            <Border Grid.Column="2"
+                                    BackgroundColor="{StaticResource CardBgElevated}"
+                                    Stroke="{StaticResource AccentGold}"
+                                    StrokeShape="RoundRectangle 18"
+                                    Padding="10">
+                                <VerticalStackLayout Spacing="2" HorizontalOptions="Center">
+                                    <Label Text="⭐" FontSize="22" HorizontalOptions="Center" />
+                                    <Label x:Name="PlanLabel"
+                                           FontSize="14"
+                                           FontAttributes="Bold"
+                                           TextColor="{StaticResource AccentGold}"
+                                           HorizontalOptions="Center" />
+                                    <Label Text="PLAN"
+                                           FontSize="10"
+                                           FontAttributes="Bold"
+                                           TextColor="{StaticResource SoftText}"
+                                           HorizontalOptions="Center" />
+                                </VerticalStackLayout>
+                            </Border>
+
+                        </Grid>
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- MAIN CTA -->
+                <Border BackgroundColor="{StaticResource PrimaryPurple}"
+                        Stroke="#A78BFA"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 28"
+                        Padding="22">
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="⚡"
+                               FontSize="42"
+                               HorizontalOptions="Center" />
+
+                        <Label Text="Start AI Quiz"
+                               FontSize="24"
+                               FontAttributes="Bold"
+                               TextColor="White"
+                               HorizontalOptions="Center" />
+
+                        <Label Text="Turn your saved material into a coding challenge"
+                               FontSize="14"
+                               TextColor="#E9D5FF"
+                               HorizontalTextAlignment="Center" />
+
+                        <Button Text="Generate Quiz"
+                                Clicked="OnGenerateQuizClicked"
+                                BackgroundColor="White"
+                                TextColor="{StaticResource PrimaryPurple}"
+                                CornerRadius="18"
+                                HeightRequest="52"
+                                FontAttributes="Bold" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- PREMIUM STRIP -->
+                <Border BackgroundColor="{StaticResource CardBg}"
+                        Stroke="{StaticResource AccentGold}"
+                        StrokeThickness="1"
+                        StrokeShape="RoundRectangle 24"
+                        Padding="18">
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="14">
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="⭐ Unlock Premium"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="{StaticResource AccentGold}" />
+                            <Label Text="Unlimited quizzes, analytics, and faster progress."
+                                   FontSize="13"
+                                   TextColor="{StaticResource SoftText}" />
+                        </VerticalStackLayout>
+
+                        <Button Grid.Column="1"
+                                Text="Upgrade"
+                                Clicked="OnSubscriptionClicked"
+                                BackgroundColor="{StaticResource AccentGold}"
+                                TextColor="#111827"
+                                CornerRadius="16"
+                                HeightRequest="46"
+                                FontAttributes="Bold" />
+                    </Grid>
+                </Border>
+
+                <Label Text="EXPLORE"
+                       Style="{StaticResource SectionHeader}" />
+
+                <!-- ACTIONS -->
+                <VerticalStackLayout Spacing="14">
+
+                    <Border BackgroundColor="{StaticResource CardBg}"
+                            Stroke="{StaticResource AccentBlue}"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 24"
+                            Padding="18">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnAddMaterialClicked" />
+                        </Border.GestureRecognizers>
+
+                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                            <Label Text="📚" FontSize="32" VerticalOptions="Center" />
+
+                            <VerticalStackLayout Grid.Column="1" Spacing="3">
+                                <Label Text="Learning Materials"
+                                       FontSize="17"
+                                       FontAttributes="Bold"
+                                       TextColor="{StaticResource TextPrimary}" />
+                                <Label Text="Save notes and code snippets"
+                                       FontSize="13"
+                                       TextColor="{StaticResource SoftText}" />
+                            </VerticalStackLayout>
+
+                            <Label Grid.Column="2"
+                                   Text="›"
+                                   FontSize="30"
+                                   TextColor="{StaticResource AccentBlue}"
+                                   VerticalOptions="Center" />
+                        </Grid>
+                    </Border>
+
+                    <Border BackgroundColor="{StaticResource CardBg}"
+                            Stroke="{StaticResource PrimaryPurple}"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 24"
+                            Padding="18">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnLeaderboardClicked" />
+                        </Border.GestureRecognizers>
+
+                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                            <Label Text="🏆" FontSize="32" VerticalOptions="Center" />
+
+                            <VerticalStackLayout Grid.Column="1" Spacing="3">
+                                <Label Text="Leaderboard"
+                                       FontSize="17"
+                                       FontAttributes="Bold"
+                                       TextColor="{StaticResource TextPrimary}" />
+                                <Label Text="Compete with other learners"
+                                       FontSize="13"
+                                       TextColor="{StaticResource SoftText}" />
+                            </VerticalStackLayout>
+
+                            <Label Grid.Column="2"
+                                   Text="›"
+                                   FontSize="30"
+                                   TextColor="{StaticResource PrimaryPurple}"
+                                   VerticalOptions="Center" />
+                        </Grid>
+                    </Border>
+
+                    <Border BackgroundColor="{StaticResource CardBg}"
+                            Stroke="{StaticResource AccentGreen}"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 24"
+                            Padding="18">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnAnalyticsClicked" />
+                        </Border.GestureRecognizers>
+
+                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                            <Label Text="📊" FontSize="32" VerticalOptions="Center" />
+
+                            <VerticalStackLayout Grid.Column="1" Spacing="3">
+                                <Label Text="Analytics"
+                                       FontSize="17"
+                                       FontAttributes="Bold"
+                                       TextColor="{StaticResource TextPrimary}" />
+                                <Label Text="Track streaks, scores and progress"
+                                       FontSize="13"
+                                       TextColor="{StaticResource SoftText}" />
+                            </VerticalStackLayout>
+
+                            <Label Grid.Column="2"
+                                   Text="›"
+                                   FontSize="30"
+                                   TextColor="{StaticResource AccentGreen}"
+                                   VerticalOptions="Center" />
+                        </Grid>
+                    </Border>
+
                 </VerticalStackLayout>
-            </Border>
 
-            <Label Text="Learn faster with AI quizzes"
-                   FontSize="20"
-                   FontAttributes="Bold"
-                   TextColor="White" />
+                <Border x:Name="MessageBox"
+                        BackgroundColor="{StaticResource CardBg}"
+                        Stroke="{StaticResource DangerRed}"
+                        StrokeShape="RoundRectangle 18"
+                        Padding="14"
+                        IsVisible="False">
+                    <Label x:Name="MessageLabel"
+                           TextColor="#FECACA"
+                           FontSize="15"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center" />
+                </Border>
 
-            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="12" RowSpacing="12">
+            </VerticalStackLayout>
+        </ScrollView>
 
-                <Button Grid.Row="0" Grid.Column="0"
-                        Text="Materials"
-                        Clicked="OnAddMaterialClicked"
-                        Style="{StaticResource PrimaryButton}"
-                        HeightRequest="70" />
+        <Button Grid.Row="1"
+                Text="Sign Out"
+                Clicked="OnLogoutClicked"
+                Style="{StaticResource DangerButton}"
+                Margin="20,0,20,24" />
 
-                <Button Grid.Row="0" Grid.Column="1"
-                        Text="Generate Quiz"
-                        Clicked="OnGenerateQuizClicked"
-                        BackgroundColor="{StaticResource AccentBlue}"
-                        TextColor="White"
-                        CornerRadius="18"
-                        HeightRequest="70" />
-
-                <Button Grid.Row="1" Grid.Column="0"
-                        Text="Leaderboard"
-                        Clicked="OnLeaderboardClicked"
-                        Style="{StaticResource SecondaryButton}"
-                        HeightRequest="70" />
-
-                <Button Grid.Row="1" Grid.Column="1"
-                        Text="Profile"
-                        Clicked="OnProfileClicked"
-                        Style="{StaticResource SecondaryButton}"
-                        HeightRequest="70" />
-
-                <Button Grid.Row="2" Grid.Column="0"
-                        Text="Subscription"
-                        Clicked="OnSubscriptionClicked"
-                        Style="{StaticResource SecondaryButton}"
-                        HeightRequest="70" />
-
-                <Button Grid.Row="2" Grid.Column="1"
-                        Text="Analytics"
-                        Clicked="OnAnalyticsClicked"
-                        Style="{StaticResource SecondaryButton}"
-                        HeightRequest="70" />
-            </Grid>
-
-            <Button Text="Logout"
-                    Clicked="OnLogoutClicked"
-                    BackgroundColor="{StaticResource DangerRed}"
-                    TextColor="White"
-                    CornerRadius="18"
-                    HeightRequest="52" />
-
-            <Label x:Name="MessageLabel"
-                   TextColor="#FCA5A5"
-                   HorizontalOptions="Center"
-                   HorizontalTextAlignment="Center" />
-
-        </VerticalStackLayout>
-    </ScrollView>
+    </Grid>
 </ContentPage>

@@ -1,3 +1,4 @@
+// Views/HomePage.xaml.cs
 using Codelingo.Frontend.Services;
 
 namespace Codelingo.Frontend.Views;
@@ -21,7 +22,8 @@ public partial class HomePage : ContentPage
     {
         try
         {
-            MessageLabel.TextColor = Colors.Black;
+            MessageBox.IsVisible = true;
+            MessageLabel.TextColor = Color.FromArgb("#FBBF24");
             MessageLabel.Text = "Generating quiz...";
 
             int materialId = Preferences.Get("current_material_id", 0);
@@ -29,7 +31,7 @@ public partial class HomePage : ContentPage
 
             if (materialId == 0 || string.IsNullOrWhiteSpace(content))
             {
-                MessageLabel.TextColor = Colors.Red;
+                MessageLabel.TextColor = Color.FromArgb("#FECACA");
                 MessageLabel.Text = "Please save learning material first.";
                 return;
             }
@@ -38,25 +40,24 @@ public partial class HomePage : ContentPage
 
             if (result == null)
             {
-                MessageLabel.TextColor = Colors.Red;
+                MessageLabel.TextColor = Color.FromArgb("#FECACA");
                 MessageLabel.Text = "Quiz generation failed.";
                 return;
             }
 
             Preferences.Set("current_quiz_id", result.QuizId);
 
-            MessageLabel.TextColor = Colors.Green;
+            MessageLabel.TextColor = Color.FromArgb("#BBF7D0");
             MessageLabel.Text = result.Message;
 
             await Shell.Current.GoToAsync(nameof(QuizPage));
         }
         catch (Exception ex)
         {
-            MessageLabel.TextColor = Colors.Red;
+            MessageBox.IsVisible = true;
+            MessageLabel.TextColor = Color.FromArgb("#FECACA");
             MessageLabel.Text = ex.Message;
         }
-
-
     }
 
     private async void OnLeaderboardClicked(object? sender, EventArgs e)
@@ -89,12 +90,16 @@ public partial class HomePage : ContentPage
     {
         base.OnAppearing();
 
+        MessageBox.IsVisible = false;
+
         var profile = await _apiService.GetProfile();
 
         if (profile != null)
         {
             WelcomeLabel.Text = $"Welcome, {profile.Name}";
-            StatsLabel.Text = $"Level {profile.Level} | Streak {profile.CurrentStreak} | {(profile.IsPremium ? "Premium" : "Free")}";
+            StreakLabel.Text = profile.CurrentStreak.ToString();
+            LevelLabel.Text = $"Lvl {profile.Level}";
+            PlanLabel.Text = profile.IsPremium ? "PREMIUM" : "FREE";
         }
     }
 }

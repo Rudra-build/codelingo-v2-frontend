@@ -28,12 +28,12 @@ public partial class ProfilePage : ContentPage
             return;
         }
 
-        EmailLabel.Text = $"Email: {profile.Email}";
-        PlanLabel.Text = profile.IsPremium ? "Plan: Premium" : "Plan: Free";
-        LevelLabel.Text = $"Level: {profile.Level}";
-        CurrentStreakLabel.Text = $"Current Streak: {profile.CurrentStreak}";
-        LongestStreakLabel.Text = $"Longest Streak: {profile.LongestStreak}";
-        CompletedLabel.Text = $"Quizzes Completed: {profile.TotalQuizzesCompleted}";
+        EmailLabel.Text = profile.Email;
+        PlanLabel.Text = profile.IsPremium ? "Premium" : "Free";
+        LevelLabel.Text = profile.Level.ToString();
+        CurrentStreakLabel.Text = profile.CurrentStreak.ToString();
+        LongestStreakLabel.Text = profile.LongestStreak.ToString();
+        CompletedLabel.Text = profile.TotalQuizzesCompleted.ToString();
     }
 
     private async void OnRefreshClicked(object? sender, EventArgs e)

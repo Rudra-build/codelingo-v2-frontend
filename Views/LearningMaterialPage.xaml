@@ -1,3 +1,4 @@
+<!-- Views/LearningMaterialPage.xaml -->
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Codelingo.Frontend.Views.LearningMaterialPage"
@@ -5,56 +6,117 @@
              BackgroundColor="{StaticResource AppBg}">
 
     <ScrollView>
-        <VerticalStackLayout Padding="24" Spacing="16">
-            <Label Text="Learning Material" Style="{StaticResource ScreenTitle}" />
+        <VerticalStackLayout Padding="20,24,20,32" Spacing="16">
 
-            <Border BackgroundColor="{StaticResource CardBg}" StrokeShape="RoundRectangle 22" Padding="18">
-                <VerticalStackLayout Spacing="12">
-                    <Entry x:Name="TitleEntry" Placeholder="Title" Style="{StaticResource InputBox}" />
+            <Label Text="Learning Material"
+                   Style="{StaticResource ScreenTitle}" />
 
-                    <Editor x:Name="ContentEditor"
-                            Placeholder="Paste your learning content here"
-                            HeightRequest="160"
-                            BackgroundColor="White"
-                            TextColor="Black" />
+            <Label Text="Save notes, articles, or code snippets"
+                   Style="{StaticResource SubText}" />
 
-                    <Button Text="Save Material" Clicked="OnSaveClicked" Style="{StaticResource PrimaryButton}" />
+            <Border BackgroundColor="{StaticResource CardBg}"
+                    Stroke="{StaticResource PrimaryPurple}"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 24"
+                    Padding="20">
+
+                <VerticalStackLayout Spacing="14">
+
+                    <Label Text="ADD NEW"
+                           Style="{StaticResource SectionHeader}" />
+
+                    <Border BackgroundColor="{StaticResource InputBg}"
+                            Stroke="{StaticResource SurfaceStroke}"
+                            StrokeShape="RoundRectangle 14"
+                            Padding="12,4">
+                        <Entry x:Name="TitleEntry"
+                               Placeholder="Material title..."
+                               PlaceholderColor="{StaticResource SoftText}"
+                               TextColor="{StaticResource TextPrimary}"
+                               Style="{StaticResource InputBox}" />
+                    </Border>
+
+                    <Border BackgroundColor="{StaticResource InputBg}"
+                            Stroke="{StaticResource SurfaceStroke}"
+                            StrokeShape="RoundRectangle 14"
+                            Padding="12,4">
+                        <Editor x:Name="ContentEditor"
+                                Placeholder="Paste your content here..."
+                                PlaceholderColor="{StaticResource SoftText}"
+                                TextColor="{StaticResource TextPrimary}"
+                                HeightRequest="135"
+                                AutoSize="Disabled"
+                                Style="{StaticResource EditorBox}" />
+                    </Border>
+
+                    <Button Text="Save Material"
+                            Clicked="OnSaveClicked"
+                            Style="{StaticResource PrimaryButton}" />
+
                 </VerticalStackLayout>
             </Border>
 
-            <Label Text="Saved Materials" FontSize="22" FontAttributes="Bold" TextColor="White" />
+            <Label Text="SAVED MATERIALS"
+                   Style="{StaticResource SectionHeader}" />
 
             <CollectionView x:Name="MaterialsCollection">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Border BackgroundColor="{StaticResource CardBg}" StrokeShape="RoundRectangle 16" Padding="12" Margin="0,5">
-                            <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8">
-                                <Label Grid.Column="0"
-                                       Text="{Binding Title}"
-                                       TextColor="White"
-                                       FontAttributes="Bold"
-                                       VerticalOptions="Center" />
+                        <Border BackgroundColor="{StaticResource CardBg}"
+                                Stroke="{StaticResource SurfaceStroke}"
+                                StrokeShape="RoundRectangle 18"
+                                Padding="16"
+                                Margin="0,6">
+
+                            <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="10">
+
+                                <VerticalStackLayout Grid.Column="0" Spacing="4">
+                                    <Label Text="{Binding Title}"
+                                           FontSize="15"
+                                           FontAttributes="Bold"
+                                           TextColor="{StaticResource TextPrimary}" />
+
+                                    <Label Text="Tap Use to load into quiz generator"
+                                           FontSize="12"
+                                           TextColor="{StaticResource SoftText}" />
+                                </VerticalStackLayout>
 
                                 <Button Grid.Column="1"
                                         Text="Use"
                                         CommandParameter="{Binding .}"
                                         Clicked="OnUseClicked"
-                                        Style="{StaticResource PrimaryButton}" />
+                                        BackgroundColor="{StaticResource PrimaryPurple}"
+                                        TextColor="White"
+                                        CornerRadius="12"
+                                        HeightRequest="40"
+                                        WidthRequest="58"
+                                        FontSize="13"
+                                        FontAttributes="Bold" />
 
                                 <Button Grid.Column="2"
-                                        Text="Delete"
+                                        Text="✕"
+                                        CommandParameter="{Binding Id}"
+                                        Clicked="OnDeleteClicked"
                                         BackgroundColor="{StaticResource DangerRed}"
                                         TextColor="White"
-                                        CornerRadius="16"
-                                        CommandParameter="{Binding Id}"
-                                        Clicked="OnDeleteClicked" />
+                                        CornerRadius="12"
+                                        HeightRequest="40"
+                                        WidthRequest="40"
+                                        FontSize="13"
+                                        FontAttributes="Bold" />
+
                             </Grid>
                         </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <Label x:Name="MessageLabel" TextColor="#FCA5A5" />
+            <Label x:Name="MessageLabel"
+                   TextColor="#FCA5A5"
+                   FontSize="14"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center" />
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

@@ -1,25 +1,90 @@
+<!-- Views/ProfilePage.xaml -->
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:Codelingo.Frontend.Views"
              x:Class="Codelingo.Frontend.Views.ProfilePage"
              Title="Profile"
-             BackgroundColor="{StaticResource AppBg}">
+             BackgroundColor="{x:Static views:ProfilePageStyles.Background}">
 
-    <VerticalStackLayout Padding="24" Spacing="16">
-        <Label Text="Profile" Style="{StaticResource ScreenTitle}" />
+    <ScrollView>
+        <VerticalStackLayout Padding="20,24,20,32" Spacing="18">
 
-        <Border BackgroundColor="{StaticResource CardBg}" StrokeShape="RoundRectangle 24" Padding="20">
-            <VerticalStackLayout Spacing="12">
-                <Label x:Name="EmailLabel" TextColor="White" FontSize="18" />
-                <Label x:Name="PlanLabel" TextColor="{StaticResource AccentBlue}" FontSize="18" />
-                <Label x:Name="LevelLabel" TextColor="White" FontSize="18" />
-                <Label x:Name="CurrentStreakLabel" TextColor="White" FontSize="18" />
-                <Label x:Name="LongestStreakLabel" TextColor="White" FontSize="18" />
-                <Label x:Name="CompletedLabel" TextColor="White" FontSize="18" />
+            <VerticalStackLayout HorizontalOptions="Center" Spacing="10">
+                <Border WidthRequest="76"
+                        HeightRequest="76"
+                        BackgroundColor="{x:Static views:ProfilePageStyles.Accent}"
+                        StrokeShape="RoundRectangle 38">
+                    <Label Text="👤"
+                           FontSize="34"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+                </Border>
+
+                <Label Text="Your Profile"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       TextColor="{x:Static views:ProfilePageStyles.TextPrimary}"
+                       HorizontalOptions="Center"/>
             </VerticalStackLayout>
-        </Border>
 
-        <Button Text="Refresh Profile" Clicked="OnRefreshClicked" Style="{StaticResource PrimaryButton}" />
+            <Border BackgroundColor="{x:Static views:ProfilePageStyles.Card}"
+                    Stroke="{StaticResource SurfaceStroke}"
+                    StrokeShape="RoundRectangle 24"
+                    Padding="20">
 
-        <Label x:Name="MessageLabel" TextColor="#FCA5A5" />
-    </VerticalStackLayout>
+                <VerticalStackLayout Spacing="12">
+
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Text="Email" TextColor="{x:Static views:ProfilePageStyles.SoftText}" />
+                        <Label x:Name="EmailLabel" Grid.Column="1" TextColor="{x:Static views:ProfilePageStyles.TextPrimary}" FontAttributes="Bold"/>
+                    </Grid>
+
+                    <BoxView HeightRequest="1" BackgroundColor="{StaticResource SurfaceStroke}" />
+
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Text="Plan" TextColor="{x:Static views:ProfilePageStyles.SoftText}" />
+                        <Label x:Name="PlanLabel" Grid.Column="1" TextColor="{x:Static views:ProfilePageStyles.Accent}" FontAttributes="Bold"/>
+                    </Grid>
+
+                    <BoxView HeightRequest="1" BackgroundColor="{StaticResource SurfaceStroke}" />
+
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Text="Level" TextColor="{x:Static views:ProfilePageStyles.SoftText}" />
+                        <Label x:Name="LevelLabel" Grid.Column="1" TextColor="{x:Static views:ProfilePageStyles.TextPrimary}" FontAttributes="Bold"/>
+                    </Grid>
+
+                    <BoxView HeightRequest="1" BackgroundColor="{StaticResource SurfaceStroke}" />
+
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Text="Current Streak" TextColor="{x:Static views:ProfilePageStyles.SoftText}" />
+                        <Label x:Name="CurrentStreakLabel" Grid.Column="1" TextColor="{x:Static views:ProfilePageStyles.Orange}" FontAttributes="Bold"/>
+                    </Grid>
+
+                    <BoxView HeightRequest="1" BackgroundColor="{StaticResource SurfaceStroke}" />
+
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Text="Longest Streak" TextColor="{x:Static views:ProfilePageStyles.SoftText}" />
+                        <Label x:Name="LongestStreakLabel" Grid.Column="1" TextColor="{x:Static views:ProfilePageStyles.TextPrimary}" FontAttributes="Bold"/>
+                    </Grid>
+
+                    <BoxView HeightRequest="1" BackgroundColor="{StaticResource SurfaceStroke}" />
+
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Text="Quizzes Done" TextColor="{x:Static views:ProfilePageStyles.SoftText}" />
+                        <Label x:Name="CompletedLabel" Grid.Column="1" TextColor="{x:Static views:ProfilePageStyles.Gold}" FontAttributes="Bold"/>
+                    </Grid>
+
+                </VerticalStackLayout>
+            </Border>
+
+            <Button Text="Refresh Profile"
+                    Clicked="OnRefreshClicked"
+                    Style="{StaticResource PrimaryButton}" />
+
+            <Label x:Name="MessageLabel"
+                   TextColor="#FCA5A5"
+                   HorizontalTextAlignment="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

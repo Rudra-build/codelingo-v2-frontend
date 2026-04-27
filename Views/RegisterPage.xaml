@@ -1,24 +1,69 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Codelingo.Frontend.Views.RegisterPage"
-             Title="Register"
              BackgroundColor="{StaticResource AppBg}">
 
-    <VerticalStackLayout Padding="28" Spacing="18" VerticalOptions="Center">
-        <Border BackgroundColor="{StaticResource CardBg}" StrokeShape="RoundRectangle 26" Padding="24">
-            <VerticalStackLayout Spacing="16">
-                <Label Text="Create Account" Style="{StaticResource ScreenTitle}" />
-                <Label Text="Start your quiz streak today" Style="{StaticResource SubText}" />
+    <ScrollView>
+        <VerticalStackLayout Padding="20,24,20,32"
+                             Spacing="16"
+                             VerticalOptions="Center">
 
-                <Entry x:Name="NameEntry" Placeholder="Name" Style="{StaticResource InputBox}" />
-                <Entry x:Name="EmailEntry" Placeholder="Email" Keyboard="Email" Style="{StaticResource InputBox}" />
-                <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True" Style="{StaticResource InputBox}" />
+            <Border Style="{StaticResource Card}" Padding="20">
+                <VerticalStackLayout Spacing="14">
 
-                <Button Text="Register" Clicked="OnRegisterClicked" Style="{StaticResource PrimaryButton}" />
-                <Button Text="Back to Login" Clicked="OnBackClicked" Style="{StaticResource SecondaryButton}" />
+                    <!-- LOGO -->
+                    <Border BackgroundColor="{StaticResource PrimaryPurple}"
+                            WidthRequest="64"
+                            HeightRequest="64"
+                            HorizontalOptions="Center"
+                            StrokeShape="RoundRectangle 18">
+                        <Label Text="C"
+                               FontSize="32"
+                               FontAttributes="Bold"
+                               TextColor="White"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"/>
+                    </Border>
 
-                <Label x:Name="MessageLabel" TextColor="#FCA5A5" HorizontalOptions="Center" />
-            </VerticalStackLayout>
-        </Border>
-    </VerticalStackLayout>
+                    <Label Text="Create Account"
+                           Style="{StaticResource ScreenTitle}"
+                           HorizontalOptions="Center"/>
+
+                    <Label Text="Start your streak today 🔥"
+                           Style="{StaticResource SubText}"
+                           HorizontalOptions="Center"/>
+
+                    <Entry x:Name="NameEntry"
+                           Placeholder="Your name"
+                           Style="{StaticResource InputBox}"/>
+
+                    <Entry x:Name="EmailEntry"
+                            Placeholder="Email address"
+                            Keyboard="Email"
+                            IsTextPredictionEnabled="False"
+                            IsSpellCheckEnabled="False"
+                            Style="{StaticResource InputBox}" />
+
+                    <Entry x:Name="PasswordEntry"
+                           Placeholder="Password"
+                           IsPassword="True"
+                           Style="{StaticResource InputBox}"/>
+
+                    <Button Text="Register"
+                            Clicked="OnRegisterClicked"
+                            Style="{StaticResource PrimaryButton}"/>
+
+                    <Button Text="I already have an account"
+                            Clicked="OnBackClicked"
+                            Style="{StaticResource SecondaryButton}"/>
+
+                    <Label x:Name="MessageLabel"
+                           TextColor="{StaticResource DangerRed}"
+                           HorizontalOptions="Center"/>
+
+                </VerticalStackLayout>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

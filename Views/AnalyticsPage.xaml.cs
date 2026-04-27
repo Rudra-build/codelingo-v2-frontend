@@ -43,4 +43,18 @@ public partial class AnalyticsPage : ContentPage
     {
         await LoadAnalytics();
     }
+
+    private async void OnCopyResultsClicked(object? sender, EventArgs e)
+    {
+        if (string.IsNullOrWhiteSpace(AnalyticsLabel.Text))
+        {
+            MessageLabel.Text = "No analytics to copy.";
+            return;
+        }
+
+        await Clipboard.SetTextAsync(AnalyticsLabel.Text);
+
+        MessageLabel.TextColor = Color.FromArgb("#BBF7D0");
+        MessageLabel.Text = "Analytics copied to clipboard.";
+    }
 }

@@ -1,3 +1,4 @@
+// Views/QuizPage.xaml.cs
 using Codelingo.Frontend.Models;
 using Codelingo.Frontend.Services;
 
@@ -29,6 +30,7 @@ public partial class QuizPage : ContentPage
 
         if (quizId == 0)
         {
+            MessageLabel.TextColor = QuizPageStyles.ErrorText;
             MessageLabel.Text = "No quiz selected.";
             return;
         }
@@ -37,6 +39,7 @@ public partial class QuizPage : ContentPage
 
         if (_quiz == null || _quiz.Questions.Count == 0)
         {
+            MessageLabel.TextColor = QuizPageStyles.ErrorText;
             MessageLabel.Text = "Failed to load quiz.";
             return;
         }
@@ -60,21 +63,33 @@ public partial class QuizPage : ContentPage
         ProgressLabel.Text = $"Question {_currentIndex + 1} of {_quiz.Questions.Count}";
         ProgressBar.Progress = (double)_currentIndex / _quiz.Questions.Count;
         TimerLabel.Text = _timeLeft.ToString();
+        TimerLabel.TextColor = QuizPageStyles.TimerRing;
         QuestionLabel.Text = question.QuestionText;
 
         OptionsLayout.Children.Clear();
-        MessageLabel.Text = "";
+
+        MessageLabel.TextColor = QuizPageStyles.SoftText;
+        MessageLabel.Text = "Choose the best answer";
 
         foreach (var option in question.Options)
         {
             var button = new Button
             {
                 Text = option.OptionText,
-                CommandParameter = option.Id
+                CommandParameter = option.Id,
+                BackgroundColor = QuizPageStyles.OptionDefault,
+                TextColor = QuizPageStyles.TextPrimary,
+                BorderColor = QuizPageStyles.OptionBorder,
+                BorderWidth = 1,
+                CornerRadius = 16,
+                HeightRequest = 58,
+                FontSize = 15,
+                FontAttributes = FontAttributes.Bold,
+                Padding = new Thickness(16, 0),
+                HorizontalOptions = LayoutOptions.Fill
             };
 
             button.Clicked += OnOptionClicked;
-
             OptionsLayout.Children.Add(button);
         }
 
@@ -91,11 +106,17 @@ public partial class QuizPage : ContentPage
             _timeLeft--;
             TimerLabel.Text = _timeLeft.ToString();
 
+            if (_timeLeft <= 5)
+                TimerLabel.TextColor = QuizPageStyles.TimerWarning;
+
             if (_timeLeft <= 0)
             {
                 _answered = true;
+
                 MainThread.BeginInvokeOnMainThread(async () =>
                 {
+                    MessageLabel.TextColor = QuizPageStyles.ErrorText;
+                    MessageLabel.Text = "Time up!";
                     await DisplayAlert("Time Up", "You ran out of time.", "OK");
                     MoveNextOrSubmit();
                 });
@@ -118,9 +139,14 @@ public partial class QuizPage : ContentPage
         _answered = true;
         _selectedOptionId = optionId;
 
-        var question = _quiz.Questions[_currentIndex];
+        button.BackgroundColor = QuizPageStyles.OptionSelected;
+        button.BorderColor = QuizPageStyles.OptionSelectedBorder;
 
+        var question = _quiz.Questions[_currentIndex];
         _selectedAnswers[question.Id] = _selectedOptionId;
+
+        MessageLabel.TextColor = QuizPageStyles.WarningText;
+        MessageLabel.Text = "Checking answer...";
 
         var result = await _apiService.CheckAnswer(new CheckAnswerRequest
         {
@@ -131,9 +157,26 @@ public partial class QuizPage : ContentPage
 
         if (result == null)
         {
+            MessageLabel.TextColor = QuizPageStyles.ErrorText;
+            MessageLabel.Text = "Could not check answer.";
             await DisplayAlert("Error", "Could not check answer.", "OK");
             return;
         }
+
+        if (result.Message.ToLower().Contains("correct"))
+        {
+            button.BackgroundColor = QuizPageStyles.CorrectGreen;
+            button.BorderColor = QuizPageStyles.CorrectGreen;
+            MessageLabel.TextColor = QuizPageStyles.SuccessText;
+        }
+        else
+        {
+            button.BackgroundColor = QuizPageStyles.WrongRed;
+            button.BorderColor = QuizPageStyles.WrongRed;
+            MessageLabel.TextColor = QuizPageStyles.ErrorText;
+        }
+
+        MessageLabel.Text = result.Message;
 
         await DisplayAlert("Answer", result.Message, "OK");
 

@@ -1,18 +1,49 @@
+<!-- Views/AnalyticsPage.xaml -->
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:Codelingo.Frontend.Views"
              x:Class="Codelingo.Frontend.Views.AnalyticsPage"
              Title="Analytics"
-             BackgroundColor="{StaticResource AppBg}">
+             BackgroundColor="{x:Static views:AnalyticsPageStyles.Background}">
 
-    <VerticalStackLayout Padding="24" Spacing="16">
-        <Label Text="Analytics" Style="{StaticResource ScreenTitle}" />
+    <ScrollView>
+        <VerticalStackLayout Padding="20,24,20,32" Spacing="16">
 
-        <Border BackgroundColor="{StaticResource CardBg}" StrokeShape="RoundRectangle 24" Padding="20">
-            <Label x:Name="AnalyticsLabel" FontSize="18" TextColor="White" />
-        </Border>
+            <Label Text="Analytics"
+                   Style="{StaticResource ScreenTitle}" />
 
-        <Button Text="Refresh Analytics" Clicked="OnRefreshClicked" Style="{StaticResource PrimaryButton}" />
+            <Label Text="Your learning performance"
+                   Style="{StaticResource SubText}" />
 
-        <Label x:Name="MessageLabel" TextColor="#FCA5A5" />
-    </VerticalStackLayout>
+            <Border BackgroundColor="{x:Static views:AnalyticsPageStyles.Card}"
+                    Stroke="{x:Static views:AnalyticsPageStyles.Accent}"
+                    StrokeShape="RoundRectangle 24"
+                    Padding="22">
+
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="YOUR STATS"
+                           Style="{StaticResource SectionHeader}" />
+
+                    <Label x:Name="AnalyticsLabel"
+                           FontSize="16"
+                           LineHeight="1.35"
+                           TextColor="{x:Static views:AnalyticsPageStyles.TextPrimary}"
+                           LineBreakMode="WordWrap" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Button Text="Copy Results"
+                    Clicked="OnCopyResultsClicked"
+                    Style="{StaticResource SecondaryButton}" />
+                    
+            <Button Text="Refresh Analytics"
+                    Clicked="OnRefreshClicked"
+                    Style="{StaticResource PrimaryButton}" />
+
+            <Label x:Name="MessageLabel"
+                   TextColor="#FCA5A5"
+                   HorizontalTextAlignment="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
