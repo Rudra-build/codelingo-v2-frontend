@@ -1,0 +1,22 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Codelingo.Frontend.Views.ResultsPage"
+             Title="Results"
+             BackgroundColor="{StaticResource AppBg}">
+
+    <VerticalStackLayout Padding="28" Spacing="18" VerticalOptions="Center">
+        <Border BackgroundColor="{StaticResource CardBg}" StrokeShape="RoundRectangle 26" Padding="24">
+            <VerticalStackLayout Spacing="18">
+                <Label Text="Quiz Results" Style="{StaticResource ScreenTitle}" />
+
+                <Label x:Name="ResultLabel"
+                       FontSize="22"
+                       TextColor="White"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center" />
+
+                <Button Text="Back to Home" Clicked="OnBackHomeClicked" Style="{StaticResource PrimaryButton}" />
+            </VerticalStackLayout>
+        </Border>
+    </VerticalStackLayout>
+</ContentPage>

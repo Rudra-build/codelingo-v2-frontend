@@ -1,0 +1,90 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Codelingo.Frontend.Views.HomePage"
+             Title="Home"
+             BackgroundColor="{StaticResource AppBg}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="18">
+
+            <Border BackgroundColor="{StaticResource CardBg}"
+                    StrokeShape="RoundRectangle 24"
+                    Padding="22">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="CodeLingo"
+                           FontSize="36"
+                           FontAttributes="Bold"
+                           TextColor="White" />
+
+                    <Label x:Name="WelcomeLabel"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource SoftText}" />
+
+                    <Label x:Name="StatsLabel"
+                           FontSize="14"
+                           TextColor="{StaticResource AccentBlue}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Label Text="Learn faster with AI quizzes"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="White" />
+
+            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="12" RowSpacing="12">
+
+                <Button Grid.Row="0" Grid.Column="0"
+                        Text="Materials"
+                        Clicked="OnAddMaterialClicked"
+                        Style="{StaticResource PrimaryButton}"
+                        HeightRequest="70" />
+
+                <Button Grid.Row="0" Grid.Column="1"
+                        Text="Generate Quiz"
+                        Clicked="OnGenerateQuizClicked"
+                        BackgroundColor="{StaticResource AccentBlue}"
+                        TextColor="White"
+                        CornerRadius="18"
+                        HeightRequest="70" />
+
+                <Button Grid.Row="1" Grid.Column="0"
+                        Text="Leaderboard"
+                        Clicked="OnLeaderboardClicked"
+                        Style="{StaticResource SecondaryButton}"
+                        HeightRequest="70" />
+
+                <Button Grid.Row="1" Grid.Column="1"
+                        Text="Profile"
+                        Clicked="OnProfileClicked"
+                        Style="{StaticResource SecondaryButton}"
+                        HeightRequest="70" />
+
+                <Button Grid.Row="2" Grid.Column="0"
+                        Text="Subscription"
+                        Clicked="OnSubscriptionClicked"
+                        Style="{StaticResource SecondaryButton}"
+                        HeightRequest="70" />
+
+                <Button Grid.Row="2" Grid.Column="1"
+                        Text="Analytics"
+                        Clicked="OnAnalyticsClicked"
+                        Style="{StaticResource SecondaryButton}"
+                        HeightRequest="70" />
+            </Grid>
+
+            <Button Text="Logout"
+                    Clicked="OnLogoutClicked"
+                    BackgroundColor="{StaticResource DangerRed}"
+                    TextColor="White"
+                    CornerRadius="18"
+                    HeightRequest="52" />
+
+            <Label x:Name="MessageLabel"
+                   TextColor="#FCA5A5"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

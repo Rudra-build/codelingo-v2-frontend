@@ -1,0 +1,25 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Codelingo.Frontend.Views.ProfilePage"
+             Title="Profile"
+             BackgroundColor="{StaticResource AppBg}">
+
+    <VerticalStackLayout Padding="24" Spacing="16">
+        <Label Text="Profile" Style="{StaticResource ScreenTitle}" />
+
+        <Border BackgroundColor="{StaticResource CardBg}" StrokeShape="RoundRectangle 24" Padding="20">
+            <VerticalStackLayout Spacing="12">
+                <Label x:Name="EmailLabel" TextColor="White" FontSize="18" />
+                <Label x:Name="PlanLabel" TextColor="{StaticResource AccentBlue}" FontSize="18" />
+                <Label x:Name="LevelLabel" TextColor="White" FontSize="18" />
+                <Label x:Name="CurrentStreakLabel" TextColor="White" FontSize="18" />
+                <Label x:Name="LongestStreakLabel" TextColor="White" FontSize="18" />
+                <Label x:Name="CompletedLabel" TextColor="White" FontSize="18" />
+            </VerticalStackLayout>
+        </Border>
+
+        <Button Text="Refresh Profile" Clicked="OnRefreshClicked" Style="{StaticResource PrimaryButton}" />
+
+        <Label x:Name="MessageLabel" TextColor="#FCA5A5" />
+    </VerticalStackLayout>
+</ContentPage>

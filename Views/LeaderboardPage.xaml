@@ -1,0 +1,28 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Codelingo.Frontend.Views.LeaderboardPage"
+             Title="Leaderboard"
+             BackgroundColor="{StaticResource AppBg}">
+
+    <VerticalStackLayout Padding="24" Spacing="16">
+        <Label Text="Leaderboard" Style="{StaticResource ScreenTitle}" />
+        <Label Text="Top learners ranked by level and quiz activity" Style="{StaticResource SubText}" />
+
+        <CollectionView x:Name="LeaderboardCollection">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border BackgroundColor="{StaticResource CardBg}" StrokeShape="RoundRectangle 18" Padding="16" Margin="0,6">
+                        <VerticalStackLayout Spacing="5">
+                            <Label Text="{Binding Name}" FontSize="20" FontAttributes="Bold" TextColor="White" />
+                            <Label Text="{Binding Level, StringFormat='Level: {0}'}" TextColor="{StaticResource AccentBlue}" />
+                            <Label Text="{Binding CurrentStreak, StringFormat='Streak: {0}'}" TextColor="{StaticResource SoftText}" />
+                            <Label Text="{Binding TotalQuizzesCompleted, StringFormat='Quizzes Completed: {0}'}" TextColor="{StaticResource SoftText}" />
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Label x:Name="MessageLabel" TextColor="#FCA5A5" />
+    </VerticalStackLayout>
+</ContentPage>

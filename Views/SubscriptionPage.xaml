@@ -1,0 +1,27 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Codelingo.Frontend.Views.SubscriptionPage"
+             Title="Subscription"
+             BackgroundColor="{StaticResource AppBg}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="16">
+            <Label Text="Subscription" Style="{StaticResource ScreenTitle}" />
+
+            <Border BackgroundColor="{StaticResource CardBg}" StrokeShape="RoundRectangle 24" Padding="20">
+                <VerticalStackLayout Spacing="12">
+                    <Label x:Name="StatusLabel" TextColor="White" FontSize="20" FontAttributes="Bold" />
+                    <Label x:Name="LevelLabel" TextColor="{StaticResource SoftText}" FontSize="18" />
+                    <Label x:Name="StreakLabel" TextColor="{StaticResource SoftText}" FontSize="18" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Button Text="Refresh Status" Clicked="OnRefreshClicked" Style="{StaticResource SecondaryButton}" />
+            <Button Text="Pay with Stripe" Clicked="OnStripeClicked" Style="{StaticResource PrimaryButton}" />
+            <Button Text="Confirm Payment" Clicked="OnConfirmClicked" Style="{StaticResource SecondaryButton}" />
+            <Button Text="Downgrade to Free" Clicked="OnDowngradeClicked" BackgroundColor="{StaticResource DangerRed}" TextColor="White" CornerRadius="18" HeightRequest="54" />
+
+            <Label x:Name="MessageLabel" TextColor="#FCA5A5" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

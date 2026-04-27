@@ -1,0 +1,60 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Codelingo.Frontend.Views.LearningMaterialPage"
+             Title="Learning Material"
+             BackgroundColor="{StaticResource AppBg}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="16">
+            <Label Text="Learning Material" Style="{StaticResource ScreenTitle}" />
+
+            <Border BackgroundColor="{StaticResource CardBg}" StrokeShape="RoundRectangle 22" Padding="18">
+                <VerticalStackLayout Spacing="12">
+                    <Entry x:Name="TitleEntry" Placeholder="Title" Style="{StaticResource InputBox}" />
+
+                    <Editor x:Name="ContentEditor"
+                            Placeholder="Paste your learning content here"
+                            HeightRequest="160"
+                            BackgroundColor="White"
+                            TextColor="Black" />
+
+                    <Button Text="Save Material" Clicked="OnSaveClicked" Style="{StaticResource PrimaryButton}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Label Text="Saved Materials" FontSize="22" FontAttributes="Bold" TextColor="White" />
+
+            <CollectionView x:Name="MaterialsCollection">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border BackgroundColor="{StaticResource CardBg}" StrokeShape="RoundRectangle 16" Padding="12" Margin="0,5">
+                            <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="8">
+                                <Label Grid.Column="0"
+                                       Text="{Binding Title}"
+                                       TextColor="White"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="Center" />
+
+                                <Button Grid.Column="1"
+                                        Text="Use"
+                                        CommandParameter="{Binding .}"
+                                        Clicked="OnUseClicked"
+                                        Style="{StaticResource PrimaryButton}" />
+
+                                <Button Grid.Column="2"
+                                        Text="Delete"
+                                        BackgroundColor="{StaticResource DangerRed}"
+                                        TextColor="White"
+                                        CornerRadius="16"
+                                        CommandParameter="{Binding Id}"
+                                        Clicked="OnDeleteClicked" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label x:Name="MessageLabel" TextColor="#FCA5A5" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

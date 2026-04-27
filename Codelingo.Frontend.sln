@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codelingo.Frontend", "Codelingo.Frontend.csproj", "{B52285CD-2B7D-BC1F-5E09-94D71B205F79}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B52285CD-2B7D-BC1F-5E09-94D71B205F79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B52285CD-2B7D-BC1F-5E09-94D71B205F79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B52285CD-2B7D-BC1F-5E09-94D71B205F79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B52285CD-2B7D-BC1F-5E09-94D71B205F79}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {59638F78-C7F3-4F18-BE2D-ED6E402B4154}
+	EndGlobalSection
+EndGlobal

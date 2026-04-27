@@ -1,0 +1,24 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Codelingo.Frontend.Views.RegisterPage"
+             Title="Register"
+             BackgroundColor="{StaticResource AppBg}">
+
+    <VerticalStackLayout Padding="28" Spacing="18" VerticalOptions="Center">
+        <Border BackgroundColor="{StaticResource CardBg}" StrokeShape="RoundRectangle 26" Padding="24">
+            <VerticalStackLayout Spacing="16">
+                <Label Text="Create Account" Style="{StaticResource ScreenTitle}" />
+                <Label Text="Start your quiz streak today" Style="{StaticResource SubText}" />
+
+                <Entry x:Name="NameEntry" Placeholder="Name" Style="{StaticResource InputBox}" />
+                <Entry x:Name="EmailEntry" Placeholder="Email" Keyboard="Email" Style="{StaticResource InputBox}" />
+                <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True" Style="{StaticResource InputBox}" />
+
+                <Button Text="Register" Clicked="OnRegisterClicked" Style="{StaticResource PrimaryButton}" />
+                <Button Text="Back to Login" Clicked="OnBackClicked" Style="{StaticResource SecondaryButton}" />
+
+                <Label x:Name="MessageLabel" TextColor="#FCA5A5" HorizontalOptions="Center" />
+            </VerticalStackLayout>
+        </Border>
+    </VerticalStackLayout>
+</ContentPage>

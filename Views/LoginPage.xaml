@@ -1,0 +1,23 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Codelingo.Frontend.Views.LoginPage"
+             Title="Login"
+             BackgroundColor="{StaticResource AppBg}">
+
+    <VerticalStackLayout Padding="28" Spacing="18" VerticalOptions="Center">
+        <Border BackgroundColor="{StaticResource CardBg}" StrokeShape="RoundRectangle 26" Padding="24">
+            <VerticalStackLayout Spacing="16">
+                <Label Text="CodeLingo" Style="{StaticResource ScreenTitle}" />
+                <Label Text="Login to continue" Style="{StaticResource SubText}" />
+
+                <Entry x:Name="EmailEntry" Placeholder="Email" Keyboard="Email" Style="{StaticResource InputBox}" />
+                <Entry x:Name="PasswordEntry" Placeholder="Password" IsPassword="True" Style="{StaticResource InputBox}" />
+
+                <Button Text="Login" Clicked="OnLoginClicked" Style="{StaticResource PrimaryButton}" />
+                <Button Text="Create Account" Clicked="OnRegisterClicked" Style="{StaticResource SecondaryButton}" />
+
+                <Label x:Name="MessageLabel" TextColor="#FCA5A5" HorizontalOptions="Center" />
+            </VerticalStackLayout>
+        </Border>
+    </VerticalStackLayout>
+</ContentPage>

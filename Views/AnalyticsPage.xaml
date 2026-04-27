@@ -1,0 +1,18 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Codelingo.Frontend.Views.AnalyticsPage"
+             Title="Analytics"
+             BackgroundColor="{StaticResource AppBg}">
+
+    <VerticalStackLayout Padding="24" Spacing="16">
+        <Label Text="Analytics" Style="{StaticResource ScreenTitle}" />
+
+        <Border BackgroundColor="{StaticResource CardBg}" StrokeShape="RoundRectangle 24" Padding="20">
+            <Label x:Name="AnalyticsLabel" FontSize="18" TextColor="White" />
+        </Border>
+
+        <Button Text="Refresh Analytics" Clicked="OnRefreshClicked" Style="{StaticResource PrimaryButton}" />
+
+        <Label x:Name="MessageLabel" TextColor="#FCA5A5" />
+    </VerticalStackLayout>
+</ContentPage>
